@@ -44,7 +44,7 @@ class ScanTask extends RecursiveTask<Set<String>> {
     @Override
     protected Set<String> compute() {
         int numLines = end - start;
-        int midpoint = start + numLines / 5;
+        int midpoint = start + numLines / 2;
         if (end - start < 15000) {
             return scanSequentially();
         }
