@@ -6,6 +6,12 @@ import java.lang.invoke.MethodType;
 
 import static java.lang.System.out;
 
+/**
+ * Note: needs the following flags in some JDK7 builds:
+ * -XX:+UnlockExperimentalVMOptions -XX:+EnableMethodHandles
+ * 
+ * @author Sander Mak, Info Support 2011
+ */
 public class MethodHandlesExample {
 
     public static void main(String[] args) throws Throwable {

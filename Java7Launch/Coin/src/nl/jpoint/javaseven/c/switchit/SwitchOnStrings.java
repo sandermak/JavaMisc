@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * @author Roy van Rijn, JPoint 2011
+ */
 public class SwitchOnStrings {
 
     public static void main(String[] args) throws IOException {

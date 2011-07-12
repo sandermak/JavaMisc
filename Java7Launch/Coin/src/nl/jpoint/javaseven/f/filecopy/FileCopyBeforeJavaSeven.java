@@ -6,6 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
+/**
+ * @author Roy van Rijn, JPoint 2011
+ */
 public class FileCopyBeforeJavaSeven {
 
     private static final File INPUT = new File("input.txt");

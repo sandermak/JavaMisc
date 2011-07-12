@@ -10,6 +10,9 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
+/**
+ * @author Roy van Rijn, JPoint 2011
+ */
 public class FindFileJava7 {
 
     public static void main(String[] args) throws Exception {

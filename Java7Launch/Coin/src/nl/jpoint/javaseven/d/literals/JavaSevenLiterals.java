@@ -1,5 +1,8 @@
 package nl.jpoint.javaseven.d.literals;
 
+/**
+ * @author Roy van Rijn, JPoint 2011
+ */
 public class JavaSevenLiterals {
 
     public static void main(String[] args) {

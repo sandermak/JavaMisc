@@ -2,6 +2,9 @@ package nl.jpoint.javaseven.g.nio;
 
 import java.io.File;
 
+/**
+ * @author Roy van Rijn, JPoint 2011
+ */
 public class FindFileJava6 {
 
     public static void main(String[] args) throws Exception {

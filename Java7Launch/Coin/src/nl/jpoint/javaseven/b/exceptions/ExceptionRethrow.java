@@ -3,6 +3,9 @@ package nl.jpoint.javaseven.b.exceptions;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * @author Roy van Rijn, JPoint 2011
+ */
 public class ExceptionRethrow {
 
     public static void main(String[] args) throws Exception {

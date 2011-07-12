@@ -16,6 +16,9 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
+/**
+ * @author Roy van Rijn, JPoint 2011
+ */
 public class MultiCatch {
 
     private static final Logger LOGGER = Logger.getLogger(MultiCatch.class.getName());
@@ -62,7 +65,7 @@ public class MultiCatch {
             final XPathExpression expr = XPathFactory.newInstance().newXPath().compile("some expression");
             expr.evaluate(doc, XPathConstants.NODESET);
 
-        } catch (final ParserConfigurationException | SAXException | IOException | XPathExpressionException e) {
+        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException e) {
             //Log and return false:
             LOGGER.log(Level.WARNING, e.getMessage(), e);
             return false;

@@ -11,14 +11,21 @@ import java.util.regex.Pattern;
 
 import static java.lang.System.out;
 
+/**
+ * Note: in my example I used a million-line file called sony.txt
+ * This has not been checked in for obvious reasons, so you have
+ * to create or obtain your own.
+ * 
+ * @author Sander Mak, Info Support 2011
+ */
 public class ForkJoinExample {
     
     private static String vegas = ".*Las Vegas.*";
-    private static String me = ".*sanderma@infosupport.com.*";
+    private static String me = ".*my@email.com.*";
 
     public static void main(String[] args) throws IOException, NoSuchMethodException, IllegalAccessException, Throwable {
         String[] input = readLinesFromFile("sony.txt");
-        String query = vegas;
+        String query = me;
         
         // Fork join run
         long start = System.currentTimeMillis();

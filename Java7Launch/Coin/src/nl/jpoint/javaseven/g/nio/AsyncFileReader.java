@@ -6,6 +6,9 @@ import java.nio.channels.CompletionHandler;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+/**
+ * @author Roy van Rijn, JPoint 2011
+ */
 public class AsyncFileReader {
 
     public static void main(String[] args) throws Exception {
@@ -30,6 +33,6 @@ public class AsyncFileReader {
             }
         });
         System.out.println("This thread keeps on running");
-        Thread.sleep(10); // Without this sometimes the println of callback misses...
+        Thread.sleep(100); // Without this sometimes the println of callback misses...
     }
 }

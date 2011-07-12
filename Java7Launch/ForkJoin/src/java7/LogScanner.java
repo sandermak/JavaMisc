@@ -8,6 +8,9 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 import java.util.regex.Pattern;
 
+/**
+ * @author Sander Mak, Info Support 2011
+ */
 public class LogScanner {
 
     private String[] input;

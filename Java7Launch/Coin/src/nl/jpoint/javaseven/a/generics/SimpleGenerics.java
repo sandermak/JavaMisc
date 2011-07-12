@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Roy van Rijn, JPoint 2011
+ */
 public class SimpleGenerics {
 
     public static void main(String[] args) {
@@ -16,13 +19,13 @@ public class SimpleGenerics {
     public void beforeJavaSeven() {
         Map<String, Collection<String>> data =
                 new HashMap<String, Collection<String>>();
-        data.put("hash", Arrays.asList("1", "2", "3"));
+        data.put("key", Arrays.asList("1", "2", "3"));
         System.out.println(data);
     }
 
     public void withJavaSeven() {
         Map<String, Collection<String>> data = new HashMap<>();
-        data.put("hash", Arrays.asList("1", "2", "3"));
+        data.put("key", Arrays.asList("1", "2", "3"));
         System.out.println(data);
     }
 }

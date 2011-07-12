@@ -6,6 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
+/**
+ * @author Roy van Rijn, JPoint 2011
+ */
 public class FileCopyWithJavaSeven {
 
     private static final File INPUT = new File("input.txt");
@@ -14,8 +17,8 @@ public class FileCopyWithJavaSeven {
     public static void main(String[] args) throws IOException {
 
         try (final FileChannel inChannel = new FileInputStream(INPUT).getChannel();
-                final FileChannel outChannel = new FileOutputStream(OUTPUT).getChannel()) {
+             final FileChannel outChannel = new FileOutputStream(OUTPUT).getChannel()) {
             inChannel.transferTo(0, inChannel.size(), outChannel);
-        }
+        } 
     }
 }
