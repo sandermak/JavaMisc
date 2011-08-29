@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProductTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProductLabel_productId}" for="productId" />
+                    <h:inputText id="productId" value="#{productController.selected.productId}" title="#{bundle.EditProductTitle_productId}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_productId}"/>
+                    <h:outputLabel value="#{bundle.EditProductLabel_purchaseCost}" for="purchaseCost" />
+                    <h:inputText id="purchaseCost" value="#{productController.selected.purchaseCost}" title="#{bundle.EditProductTitle_purchaseCost}" />
+                    <h:outputLabel value="#{bundle.EditProductLabel_quantityOnHand}" for="quantityOnHand" />
+                    <h:inputText id="quantityOnHand" value="#{productController.selected.quantityOnHand}" title="#{bundle.EditProductTitle_quantityOnHand}" />
+                    <h:outputLabel value="#{bundle.EditProductLabel_markup}" for="markup" />
+                    <h:inputText id="markup" value="#{productController.selected.markup}" title="#{bundle.EditProductTitle_markup}" />
+                    <h:outputLabel value="#{bundle.EditProductLabel_available}" for="available" />
+                    <h:inputText id="available" value="#{productController.selected.available}" title="#{bundle.EditProductTitle_available}" />
+                    <h:outputLabel value="#{bundle.EditProductLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{productController.selected.description}" title="#{bundle.EditProductTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditProductLabel_productCode}" for="productCode" />
+                    <h:selectOneMenu id="productCode" value="#{productController.selected.productCode}" title="#{bundle.EditProductTitle_productCode}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_productCode}">
+                        <f:selectItems value="#{productCodeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditProductLabel_manufacturerId}" for="manufacturerId" />
+                    <h:selectOneMenu id="manufacturerId" value="#{productController.selected.manufacturerId}" title="#{bundle.EditProductTitle_manufacturerId}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_manufacturerId}">
+                        <f:selectItems value="#{manufacturerController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{productController.update}" value="#{bundle.EditProductSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditProductViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{productController.prepareList}" value="#{bundle.EditProductShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditProductIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
