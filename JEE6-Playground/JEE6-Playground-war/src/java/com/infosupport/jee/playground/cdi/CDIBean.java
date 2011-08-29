@@ -25,7 +25,7 @@ public class CDIBean {
 
     @PostConstruct
     public void init() {
-        final String msg = "CDIBean initialized!";
+        final String msg = "CDIBean initialized!!";
         logEvent.fire(msg);
         logger.log(Level.INFO, msg);
     }
