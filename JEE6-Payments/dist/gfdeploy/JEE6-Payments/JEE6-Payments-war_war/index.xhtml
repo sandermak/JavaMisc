@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Payments overview</title>
+    </h:head>
+    <h:body>
+        <h:form id="form1">
+            <h:selectOneMenu value="#{paymentController.filter}">
+                <f:selectItems value="#{paymentStatuses}" />
+                <f:ajax event="change" render="payments" />
+            </h:selectOneMenu>
+        
+            <!-- Panel group added since rendered and ajax update do not work
+                 together it seems. By adding rendered attrs on subelements and
+                 updating the panelgroup everything works fine. -->
+            <h:panelGroup id="payments"> 
+                <h:outputText rendered="#{empty payments}" value="No results found" />
+                <h:dataTable rendered="#{not empty payments}" value="#{payments}" var="payment">
+                    <h:column>
+                        <f:facet name="header">From</f:facet>
+                        <h:outputText value="#{payment.from.accountHolder} (#{payment.from.accountNumber})" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">To</f:facet>
+                        <h:outputText value="#{payment.to.accountHolder} (#{payment.to.accountNumber})" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Amount</f:facet>
+                        <h:outputText value="#{payment.amount}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Status</f:facet>
+                        <h:outputText value="#{payment.status}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">New status</f:facet>
+                        <h:selectOneMenu id="newStatusValue" value="#{payment.status}">
+                            <f:selectItems value="#{paymentController.getPaymentStatusesWithout(payment.status)}" />
+                        </h:selectOneMenu>
+                        <h:commandButton value="Aanpassen" action="#{paymentController.storePayment(payment)}">
+                            <!-- To prevent other form to submit and give validation errors, use execute prop -->
+                            <f:ajax render="@form" execute="newStatusValue" />
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <table>
+                <tr>
+                    <td>Amount:</td>
+                    <td><h:inputText value="#{newPayment.amount}"><f:convertNumber /></h:inputText></td>
+                    <td>Description:</td>
+                    <td><h:inputText value="#{newPayment.description}" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><h:commandButton value="Opslaan" action="#{paymentController.storePayment()}"  /></td>
+                </tr>
+            </table>
+        </h:form>
+    </h:body>
+</html>
+
