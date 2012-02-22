@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/resources/scaffold/page.xhtml"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:param name="pageTitle" value="Primefaces test" />
+
+	<ui:define name="header">
+		Welcome to PrimeFaces testpage
+	</ui:define>
+
+	<ui:define name="subheader">
+		Your application is running.
+	</ui:define>
+
+	<ui:define name="main">
+            <p:editor id="editor" value="#{testBean.content}"/>
+            <h:outputText value="#{testBean.content}" escape="false" id="output" />
+            <h:commandButton value="Save" action="#{testBean.save}">
+                <f:ajax execute="editor" render="output" />
+            </h:commandButton>
+            
+            <br />
+            <p:dataTable value="#{testBean.persons}" var="p">
+                <p:column sortBy="#{p.firstname}">
+                    <f:facet name="header">Firstname</f:facet>
+                    #{p.firstname}
+                </p:column>
+                <p:column sortBy="#{p.lastname}">
+                    <f:facet name="header">Lastname</f:facet>
+                    #{p.lastname}
+                </p:column>
+                
+            </p:dataTable>
+            <br />
+            <p:pieChart id="chart" value="#{testBean.model}" legendPosition="w" />
+            <h:commandButton value="Change" action="#{testBean.change}">
+                <f:ajax render="chart" />
+            </h:commandButton>
+	</ui:define>
+
+</ui:composition>
