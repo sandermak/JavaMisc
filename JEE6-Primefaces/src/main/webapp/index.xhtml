@@ -1,46 +1,55 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-        template="/resources/scaffold/page.xhtml"
-        xmlns:p="http://primefaces.org/ui"
-        xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/template/page.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
 
-	<ui:param name="pageTitle" value="Primefaces test" />
+    <ui:param name="pageTitle" value="Sandwich Shop" />
 
-	<ui:define name="header">
-		Welcome to PrimeFaces testpage
-	</ui:define>
+    <ui:define name="header">
+        The PrimeFaces Sandwich Shop
+    </ui:define>
 
-	<ui:define name="subheader">
-		Your application is running.
-	</ui:define>
+    <ui:define name="subheader">
+        ... hungry yet?
+    </ui:define>
 
-	<ui:define name="main">
-            <p:editor id="editor" value="#{testBean.content}"/>
-            <h:outputText value="#{testBean.content}" escape="false" id="output" />
-            <h:commandButton value="Save" action="#{testBean.save}">
-                <f:ajax execute="editor" render="output" />
-            </h:commandButton>
-            
-            <br />
-            <p:dataTable value="#{testBean.persons}" var="p">
-                <p:column sortBy="#{p.firstname}">
-                    <f:facet name="header">Firstname</f:facet>
-                    #{p.firstname}
-                </p:column>
-                <p:column sortBy="#{p.lastname}">
-                    <f:facet name="header">Lastname</f:facet>
-                    #{p.lastname}
-                </p:column>
-                
-            </p:dataTable>
-            <br />
-            <p:pieChart id="chart" value="#{testBean.model}" legendPosition="w" />
-            <h:commandButton value="Change" action="#{testBean.change}">
-                <f:ajax render="chart" />
-            </h:commandButton>
-	</ui:define>
+    <ui:define name="main">
+        <p:tabView>
+            <p:tab title="Grid">
+                <p:dataGrid value="#{catalog.sandwiches}" var="sw" columns="2" rows="4" paginator="true" >
+                    <p:column>
+                        <p:panel header="#{sw.name}">
+                            <h:panelGrid columns="1">
+                                <p:graphicImage width="120" height="90" value="#{resource[catalog.getSandwichById(sw.id).imageLocation]}"  />
+                                <h:outputText escape="false" value="&euro; #{sw.price}" />
+                                <h:commandButton value="Details" onclick="details#{sw.id}.show();" type="button"/>
+                                <p:dialog widgetVar="details#{sw.id}">
+                                    <h1>#{sw.name} (&euro; #{sw.price})</h1>
+                                    <p:graphicImage width="120" height="90" value="#{resource[catalog.getSandwichById(sw.id).imageLocation]}"  />
+                                    #{sw.description}
+                                </p:dialog>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:column>
+
+                </p:dataGrid>
+            </p:tab>
+            <p:tab title="Table">
+                <p:dataTable value="#{catalog.sandwiches}" var="sw">
+                    <p:column headerText="Name" sortBy="#{sw.name}" filterBy="#{sw.name}" >
+                        #{sw.name}                        
+                    </p:column>
+                    <p:column headerText="Price" sortBy="#{sw.price}" filterBy="#{sw.price}">
+                        &euro; #{sw.price}
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+        </p:tabView>
+
+    </ui:define>
 
 </ui:composition>
