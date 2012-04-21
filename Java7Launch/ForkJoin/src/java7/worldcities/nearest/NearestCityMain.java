@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import static java.lang.System.out;
+import java.util.*;
 
 /**
  * @author Sander Mak, Info Support 2012
@@ -33,13 +34,16 @@ public class NearestCityMain {
         // Fork join run
         long start = System.currentTimeMillis();
         NearestCityScanner scanner = new NearestCityScanner(input);
-        Set<String> matches = scanner.scan(lat, lng);
+        Set<City> matches = scanner.scan(lat, lng);
         long end = System.currentTimeMillis();
         
-        for(String match: matches)
-            System.out.println(match);
+        SortedSet<City> sortedCities = new TreeSet<>();
+        sortedCities.addAll(matches);
         
-        out.println("Number of matches  : " + matches.size());
+        for (City match: sortedCities)
+            out.println(String.format("%s (population: %d)", match.name, match.population));
+        
+        out.println("Number of cities   : " + matches.size());
         out.println("Elapsed (ForkJoin) : " + (end - start));
         
     }
