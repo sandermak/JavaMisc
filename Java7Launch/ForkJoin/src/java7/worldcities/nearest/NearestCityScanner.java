@@ -8,7 +8,7 @@ import java.util.concurrent.RecursiveTask;
 import static java.lang.Math.abs;
 
 /**
- * @author Sander Mak, Info Support 2011
+ * @author Sander Mak, Info Support 2012
  */
 public class NearestCityScanner {
 
@@ -71,17 +71,15 @@ class ScanTask extends RecursiveTask<Set<City>> {
 
     private Set<City> findTopNearestCities() {
         Set<City> matches = new HashSet<>();
-        double absLat = abs(lat);
-        double absLong = abs(lng);
         
         for(int i = start; i < end; i++) {
             String[] fields = input[i].split(",");
+            Integer population = !"".equals(fields[4]) ? Integer.valueOf(fields[4]) : null;
             double fieldLat = Double.valueOf(fields[5]);
             double fieldLng = Double.valueOf(fields[6]);
-            Integer population = !"".equals(fields[4]) ? Integer.valueOf(fields[4]) : null;
-            // TODO correct range checks for -/+ lat/long
-            if(abs(absLat - abs(fieldLat)) <= searchBound &&
-                    abs(absLong - abs(fieldLng)) <= searchBound && population != null) {
+            
+            if(abs(lat - fieldLat) <= searchBound &&
+                    abs(lng - fieldLng) <= searchBound && population != null) {
                 matches.add(new City(fields[2] + " (" + fields[0] + ")", population));
             }
             

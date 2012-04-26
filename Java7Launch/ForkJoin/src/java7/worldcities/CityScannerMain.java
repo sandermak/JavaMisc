@@ -16,7 +16,7 @@ import static java.lang.System.out;
  */
 public class CityScannerMain {
     
-    private static String veenendaal = ".*Bruxelles,.*";
+    private static String veenendaal = ".*Brussels.*";
 
     public static void main(String[] args) throws IOException, NoSuchMethodException, IllegalAccessException, Throwable {
         String[] input = readLinesFromFile("worldcitiespop.txt");
@@ -41,9 +41,6 @@ public class CityScannerMain {
         end = System.currentTimeMillis();
         out.println("\nNumber of matches  : " + matches.size());
         out.println("Elapsed (naive)    : " + (end - start));
-        
-        
-        
     }
     
     private static Set<String> naive(String[] input, String query) {
