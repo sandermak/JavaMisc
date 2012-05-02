@@ -2,22 +2,22 @@ package fibonacci;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
-public class FibForkJoin extends RecursiveTask<Long> {
-    private final long fibValue;
+public class FibForkJoin extends RecursiveTask<Integer> {
+    private final int fibValue;
 
-    public FibForkJoin(long fibValue) {
+    public FibForkJoin(int fibValue) {
         this.fibValue = fibValue;
     }
 
     @Override
-    public Long compute() {
-        if (fibValue < 2L) {
+    public Integer compute() {
+        if (fibValue < 2) {
             return fibValue;
         } else {
-            FibForkJoin firstWorker = new FibForkJoin(fibValue - 1L);
+            FibForkJoin firstWorker = new FibForkJoin(fibValue - 1);
             firstWorker.fork();
             
-            FibForkJoin secondWorker = new FibForkJoin(fibValue - 2L);
+            FibForkJoin secondWorker = new FibForkJoin(fibValue - 2);
             secondWorker.fork();
             
             return  secondWorker.join() + firstWorker.join();
@@ -27,7 +27,10 @@ public class FibForkJoin extends RecursiveTask<Long> {
     public static void main(String[] args) {
         ForkJoinPool fjPool = new ForkJoinPool();
         // Fib(42) should take about 17 seconds
-        System.out.println(fjPool.invoke(new FibForkJoin(4)));
+        long start = System.currentTimeMillis();
+        System.out.println(fjPool.invoke(new FibForkJoin(42)));
+        long end = System.currentTimeMillis();
+        System.out.println("Elapsed: " + (end - start));
         System.out.println("Stolen tasks: " + fjPool.getStealCount());
     }
 }

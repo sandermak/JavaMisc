@@ -15,7 +15,7 @@ import java.util.*;
  * @author Sander Mak, Info Support 2012
  */
 public class NearestCityMain {
-    // bruxelles 50.833333,4.333333
+    
     // Leuven
     private static final double lat = 50.88;
     private static final double lng = 4.7;
