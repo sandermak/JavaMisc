@@ -43,8 +43,9 @@ public class FibThreads {
         }
     }
     
+    // Run on Mac
     public static void main(String[] args) throws InterruptedException {
-        System.out.println(fib(2));
+        System.out.println(fib(10));
         System.out.println("Number of threads: " + cnt);
     }
 }

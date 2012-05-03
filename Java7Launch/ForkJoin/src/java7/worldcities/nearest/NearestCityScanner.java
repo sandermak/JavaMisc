@@ -36,7 +36,7 @@ class ScanTask extends RecursiveTask<Set<City>> {
 
     // Search parameters    
     private double lat, lng;
-    private double searchBound = 0.4;
+    private double searchBoundSquared = 0.4 * 0.4;
 
     public ScanTask(String[] input, int start, int end, double lat, double lng) {
         this.input = input;
@@ -78,8 +78,7 @@ class ScanTask extends RecursiveTask<Set<City>> {
             double fieldLat = Double.valueOf(fields[5]);
             double fieldLng = Double.valueOf(fields[6]);
             
-            if(abs(lat - fieldLat) <= searchBound &&
-                    abs(lng - fieldLng) <= searchBound && population != null) {
+            if(Math.pow((lat - fieldLat), 2) + Math.pow((lng - fieldLng), 2) <= searchBoundSquared && population != null) {
                 matches.add(new City(fields[2] + " (" + fields[0] + ")", population));
             }
             

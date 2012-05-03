@@ -16,7 +16,7 @@ import static java.lang.System.out;
  */
 public class CityScannerMain {
     
-    private static String veenendaal = ".*Brussels.*";
+    private static String veenendaal = ".*Leuven.*";
 
     public static void main(String[] args) throws IOException, NoSuchMethodException, IllegalAccessException, Throwable {
         String[] input = readLinesFromFile("worldcitiespop.txt");
