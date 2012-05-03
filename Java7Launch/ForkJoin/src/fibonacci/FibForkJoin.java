@@ -28,9 +28,10 @@ public class FibForkJoin extends RecursiveTask<Integer> {
         ForkJoinPool fjPool = new ForkJoinPool();
         // Fib(42) should take about 17 seconds
         long start = System.currentTimeMillis();
-        System.out.println(fjPool.invoke(new FibForkJoin(42)));
+        System.out.println(fjPool.invoke(new FibForkJoin(4)));
         long end = System.currentTimeMillis();
+        
         System.out.println("Elapsed: " + (end - start));
-        System.out.println("Stolen tasks: " + fjPool.getStealCount());
+        System.out.println("Threads: " + fjPool.getPoolSize());
     }
 }

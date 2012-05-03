@@ -45,7 +45,11 @@ public class FibThreads {
     
     // Run on Mac
     public static void main(String[] args) throws InterruptedException {
-        System.out.println(fib(10));
+        long start = System.currentTimeMillis();
+        System.out.println(fib(4));
+        long end = System.currentTimeMillis();
+        
+        System.out.println("Elapsed: " + (end - start));
         System.out.println("Number of threads: " + cnt);
     }
 }
