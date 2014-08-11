@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>#{empty pageTitle ? '{#pageTitle}' : pageTitle}</title>
+        <link rel="icon" href="#{resource['favicon.ico']}" />
+        <h:outputStylesheet name="forge-style.css" />
+    </h:head>
+
+    <h:body>	
+        <p:growl id="messages" autoUpdate="true" />
+        <div id="wrapper">
+
+            <div id="navigation">
+                <h:link outcome="/index.xhtml">
+                    <img src="#{resource['forge-logo.png']}" alt="Forge... get hammered" border="0"/>
+                </h:link>
+                <ul/>				
+            </div>
+
+            <div id="content">
+                <h1><ui:insert name="header"/></h1>		
+                <h2><ui:insert name="subheader"/></h2>
+                <h:form>
+                    <ui:insert name="main"/>
+                </h:form>
+                <div id="footer">
+                    Powered by PrimeFaces
+                </div>
+            </div>		
+        </div>		
+    </h:body>
+</html>
